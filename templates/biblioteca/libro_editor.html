@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editando: {{ libro.titulo }}</title>
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+    <link rel="stylesheet" href="{% static 'css/editor.css' %}">
+</head>
+<body class="entorno-oscuro">
+
+    <div class="workspace">
+        
+        <aside class="sidebar-izquierda">
+            <div class="info-libro">
+                <h3>📖 {{ libro.titulo }}</h3>
+                <a href="{% url 'inicio' %}" class="btn-volver">← Volver al inicio</a>
+            </div>
+            
+            <div class="carpetas">
+                <div class="bloque-carpeta">
+                    <p class="titulo-carpeta">📁 Manuscrito (Historia)</p>
+                    <button class="item-archivo activo" id="btn-ver-historia">📝 Capítulo 1</button>
+                </div>
+
+                <div class="bloque-carpeta">
+                    <p class="titulo-carpeta">📁 Personajes</p>
+                    <button class="item-archivo" id="btn-ver-personaje">👤 Protagonista (Apuntes)</button>
+                    <button class="item-agregar">+ Agregar personaje</button>
+                </div>
+
+                <div class="bloque-carpeta">
+                    <p class="titulo-carpeta">📁 Mundo / Ciudades</p>
+                    <button class="item-archivo">📍 Capital del Reino</button>
+                    <button class="item-agregar">+ Agregar lugar</button>
+                </div>
+            </div>
+        </aside>
+
+        <main class="zona-edicion">
+            
+            <section id="panel-historia" class="panel-contenido">
+                <div class="cabecera-editor">
+                    <input type="text" value="Capítulo 1: El Comienzo" class="input-titulo">
+                    <button class="btn-guardar">Guardar Historia</button>
+                </div>
+                <textarea class="textarea-editor" placeholder="Empieza a escribir tu obra maestra aquí..."></textarea>
+            </section>
+
+            <section id="panel-personaje" class="panel-contenido" style="display: none;">
+                <div class="cabecera-editor">
+                    <input type="text" value="Ficha: Protagonista Principal" class="input-titulo input-personaje">
+                    <button class="btn-guardar">Guardar Ficha</button>
+                </div>
+                
+                <div class="formulario-personaje">
+                    <div class="avatar-placeholder">
+                        <span>📸 Agregar Imagen</span>
+                    </div>
+                    <div class="campos-datos">
+                        <label>Edad/Rol:</label>
+                        <input type="text" placeholder="Ej: 21 años / Caballero">
+                        <label>Apuntes y Detalles Curiosos:</label>
+                        <textarea placeholder="Describe sus ojos, su pasado, sus secretos..."></textarea>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="{% static 'js/editor.js' %}"></script>
+</body>
+</html>

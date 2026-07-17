@@ -1,0 +1,167 @@
+/* Reinicios básicos para entorno oscuro */
+body.entorno-oscuro {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Evita doble barra de scroll en la pantalla general */
+}
+
+/* El contenedor que divide la pantalla */
+.workspace {
+    display: grid;
+    grid-template-columns: 280px 1fr; /* 280px para carpetas, el resto para escribir */
+    height: 100vh;
+}
+
+/* Barra lateral izquierda */
+.sidebar-izquierda {
+    background-color: #1a1a1a;
+    border-right: 1px solid #2d2d2d;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.info-libro h3 {
+    margin: 0 0 5px 0;
+    color: #bb86fc;
+}
+
+.btn-volver {
+    color: #888;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.btn-volver:hover { color: #fff; }
+
+.carpetas { margin-top: 30px; }
+
+.bloque-carpeta { margin-bottom: 20px; }
+
+.titulo-carpeta {
+    font-size: 14px;
+    font-weight: bold;
+    color: #aaaaaa;
+    margin-bottom: 8px;
+}
+
+/* Botones que simulan ser archivos */
+.item-archivo {
+    display: block;
+    width: 100%;
+    background: none;
+    border: none;
+    color: #ccc;
+    text-align: left;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.item-archivo:hover, .item-archivo.activo {
+    background-color: #2d2d2d;
+    color: #bb86fc;
+}
+
+.item-agregar {
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 5px 12px;
+}
+.item-agregar:hover { color: #aaa; }
+
+/* Zona del Editor Central */
+.zona-edicion {
+    background-color: #121212;
+    padding: 40px;
+    overflow-y: auto; /* Si el texto es largo, solo se escrolea el editor */
+}
+
+.cabecera-editor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #2d2d2d;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.input-titulo {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    outline: none;
+    width: 70%;
+}
+
+.btn-guardar {
+    background-color: #bb86fc;
+    color: #000;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Lienzo de escritura estilo Wattpad */
+.textarea-editor {
+    width: 100%;
+    height: 70vh;
+    background: none;
+    border: none;
+    color: #e0e0e0;
+    font-size: 18px;
+    line-height: 1.6;
+    resize: none;
+    outline: none;
+}
+
+/* Estilos de la Ficha de Personaje */
+.formulario-personaje {
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.avatar-placeholder {
+    width: 150px;
+    height: 200px;
+    background-color: #1a1a1a;
+    border: 2px dashed #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.campos-datos {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.campos-datos label { color: #aaa; font-size: 14px; }
+
+.campos-datos input, .campos-datos textarea {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    outline: none;
+}
+.campos-datos textarea { height: 120px; resize: none; }

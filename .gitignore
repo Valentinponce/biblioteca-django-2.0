@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.env
+
+# Django
+db.sqlite3
+media/
+staticfiles/
+
+# Docker
+.docker/
+# Si tu docker-compose guarda los datos de Postgres en una carpeta local (ej: pgdata o postgres_data)
+pgdata/
+postgres_data/
+
+# IDEs y Editores
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# Sistema
+.DS_Store
+Thumbs.db

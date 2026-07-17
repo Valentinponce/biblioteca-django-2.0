@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Biblioteca - Graf </title>
+    <link rel="stylesheet" href="{% static 'css/inicio.css' %}">
+    <link rel="stylesheet" href="{% static 'css/biblioteca.css' %}">
+</head>
+<body>
+
+    <!-- Barra de Navegación (Mantenemos tu estilo) -->
+    <nav class="barra-navegacion">
+        <div class="logo">✒️ Graf</div>
+        <div class="enlaces">
+            <a href="{% url 'inicio' %}">Inicio</a>
+            <a href="#" class="activo">Biblioteca</a>
+            <a href="#">Explorar</a>
+            <a href="#">Comunidad</a>
+        </div>
+    </nav>
+
+    <!-- PANTALLA 1: Bienvenida e Selección de Biblioteca -->
+    <div id="pantalla-seleccion" class="pantalla-seleccion">
+        <div class="contenido-seleccion">
+            <h1>Crea tus historias</h1>
+            <div class="bloque-botones">
+                <button class="btn-biblioteca" onclick="entrarABiblioteca()">Biblioteca Pública</button>
+                <button class="btn-biblioteca" onclick="entrarABiblioteca()">Biblioteca Privada</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PANTALLA 2: Panel Estilo VS Code / Google Keep (Oculto al principio) -->
+    <div id="panel-workspace" class="panel-workspace oculto">
+        
+        <!-- Columna Izquierda: Clasificaciones -->
+        <aside class="sidebar-clasificaciones">
+            <h3>🗂️ Clasificaciones</h3>
+            <ul id="lista-clasificaciones">
+                <li class="item-clasificacion activa" onclick="filtrarLibros('todos')">Todos los libros</li>
+                <!-- Aquí se añadirán las clasificaciones dinámicamente -->
+            </ul>
+            <!-- (NUEVO) BOTÓN NUEVO PARA BORRAR TODO -->
+            <div class="zona-eliminar-todo">
+                <button class="btn-eliminar-todo" onclick="eliminarTodo()">⚠️ Limpiar Biblioteca</button>
+            </div>
+        </aside>
+        </aside>
+
+        <!-- Espacio de la Derecha: Grid de Libros -->
+        <main class="espacio-libros">
+            <div id="zona-vacia" class="zona-vacia">
+                <button class="btn-crear-libro" onclick="abrirModal()">➕ Escribir nuevo libro</button>
+            </div>
+            
+            <!-- Grid 4x4 donde aparecerán las tarjetas de los libros -->
+            <div id="grid-libros" class="grid-libros"></div>
+        </main>
+    </div>
+
+    <!-- VENTANA FLOTANTE (MODAL) PARA CONFIGURAR EL LIBRO -->
+    <div id="modal-libro" class="modal-fondo oculto">
+        <div class="modal-contenido">
+            <h2>Configura tu nuevo libro</h2>
+            
+            <form id="form-nuevo-libro" onsubmit="crearLibro(event)">
+
+                   <!-- Carátula (Subir imagen desde la PC) -->
+                <div class="campo-form">
+                    <label for="libro-imagen">Selecciona una carátula desde tu PC:</label>
+                    <!-- (NUEVO) Cambiamos el select por un input de tipo archivo -->
+                    <input type="file" id="libro-imagen" accept="image/*" required>
+                </div>
+
+                <!-- Título -->
+                <div class="campo-form">
+                    <label for="libro-titulo">Título del libro:</label>
+                    <input type="text" id="libro-titulo" placeholder="Ej: Las Crónicas de Django" required>
+                </div>
+
+                <!-- Clasificación -->
+                <div class="campo-form">
+                    <label for="libro-categoria">Clasificación / Género:</label>
+                    <input type="text" id="libro-categoria" placeholder="Ej: Fantasía, Terror, Romance" required>
+                </div>
+
+                <!-- Sinopsis -->
+                <div class="campo-form">
+                    <label for="libro-sinopsis">Pequeña sinopsis:</label>
+                    <textarea id="libro-sinopsis" rows="3" placeholder="Escribe un breve resumen de tu historia..." required></textarea>
+                </div>
+
+                <!-- Botones de acción -->
+                <div class="modal-botones">
+                    <button type="button" class="btn-cancelar" onclick="cerrarModal()">Cancelar</button>
+                    <button type="submit" class="btn-crear">Crear Libro</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- JS de la Biblioteca -->
+    <script src="{% static 'js/biblioteca.js' %}?v=1.1"></script>
+</body>
+</html>

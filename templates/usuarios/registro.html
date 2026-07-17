@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Escritor - Graf</title>
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+</head>
+<body class="login-body">
+    <div class="login-container">
+        <h2>Crear Cuenta en Graf</h2>
+        
+        {% if messages %}
+            <div class="alert-messages">
+                {% for message in messages %}
+                    <p class="error-text">{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="reg_nombre">Nombre de Usuario:</label>
+                <input type="text" name="reg_nombre" required placeholder="Tu seudónimo de escritor">
+            </div>
+            <div class="form-group">
+                <label for="reg_email">Correo Electrónico:</label>
+                <input type="email" name="reg_email" required placeholder="tu@correo.com">
+            </div>
+            <div class="form-group">
+                <label for="reg_clave">Contraseña:</label>
+                <input type="password" name="reg_clave" required placeholder="Mínimo 8 caracteres">
+            </div>
+            <div class="form-group">
+                <label for="reg_clave_confirm">Confirmar Contraseña:</label>
+                <input type="password" name="reg_clave_confirm" required placeholder="Escríbela de nuevo">
+            </div>
+            <button type="submit" class="btn-primary">Registrarse e Ingresar</button>
+        </form>
+        
+        <div class="login-footer">
+            <p>¿Ya tienes cuenta? <a href="{% url 'login' %}">Inicia sesión aquí</a></p>
+        </div>
+    </div>
+</body>
+</html>

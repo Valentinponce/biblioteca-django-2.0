@@ -1,0 +1,393 @@
+/* ==========================================
+   PANTALLA 1: SELECCIÓN (Fondo Negro Expandido)
+   ========================================== */
+.pantalla-seleccion {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1e1e24;
+    height: calc(100vh - 70px);
+    transition: filter 0.8s ease, opacity 0.8s ease; /* Efecto blur y desvanecer */
+}
+
+.contenido-seleccion {
+    text-align: center;
+}
+
+.contenido-seleccion h1 {
+    font-size: 42px;
+    color: #f4f4f9;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+.bloque-botones {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.btn-biblioteca {
+    background-color: #3c096c; /* Tu violeta */
+    color: #FFF3B0; /* Tu amarillo crema */
+    border: 2px solid #3c096c;
+    padding: 15px 50px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 280px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.btn-biblioteca:hover {
+    transform: scale(1.05);
+    background-color: #5a189a;
+}
+
+/* Clases de animación mediante JS */
+.efecto-blur {
+    filter: blur(20px);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.oculto {
+    display: none !important;
+}
+
+/* ==========================================
+   PANTALLA 2: WORKSPACE (Estilo VS Code)
+   ========================================== */
+.panel-workspace {
+    display: flex;
+    height: calc(100vh - 72px);
+    background-color: #1e1e24;
+    animation: fadeIn 0.8s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; filter: blur(10px); }
+    to { opacity: 1; filter: blur(0); }
+}
+
+/* Columna Izquierda (Sidebar) */
+.sidebar-clasificaciones {
+    width: 250px;
+    background-color: #141419; /* Más oscuro tipo VS Code */
+    border-right: 1px solid #2d2d35;
+    padding: 20px;
+}
+
+.sidebar-clasificaciones h3 {
+    color: #FFF3B0;
+    font-size: 16px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.sidebar-clasificaciones ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-clasificaciones li {
+    color: #ccc;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 8px;
+    transition: background 0.2s;
+}
+
+.sidebar-clasificaciones li:hover, .sidebar-clasificaciones li.activa {
+    background-color: #3c096c;
+    color: white;
+}
+
+/* Espacio de la Derecha */
+.espacio-libros {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+}
+
+.zona-vacia {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.btn-crear-libro {
+    background-color: #FFF3B0;
+    color: #1e1e24;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.btn-crear-libro:hover {
+    transform: scale(1.03);
+}
+
+/* GRID DE LIBROS 4X4 */
+.grid-libros {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Formato responsivo estilo rejilla */
+    gap: 25px;
+    padding-top: 20px;
+}
+
+/* Tarjeta de Libro */
+.tarjeta-libro {
+    position: relative;
+    height: 280px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    background-color: #2d2d35;
+    cursor: pointer;
+}
+
+.tarjeta-libro img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+/* Capa de texto encima */
+.capa-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+    box-sizing: border-box;
+    opacity: 0; /* Oculto por defecto */
+    background-color: rgba(60, 9, 108, 0.7); /* Filtro violeta translúcido */
+    transition: opacity 0.4s ease;
+}
+
+.capa-info h4 {
+    color: #FFF3B0;
+    font-size: 18px;
+    margin: 0;
+}
+
+/* ✨ EFECTO PASAR EL MOUSE (BLUR + TEXTO ENCIMA) ✨ */
+.tarjeta-libro:hover img {
+    filter: blur(5px);
+    transform: scale(1.05);
+}
+
+.tarjeta-libro:hover .capa-info {
+    opacity: 1;
+}
+
+/* ==========================================
+   VENTANA FLOTANTE (MODAL)
+   ========================================== */
+.modal-fondo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-contenido {
+    background-color: #2d2d35;
+    padding: 30px;
+    border-radius: 12px;
+    width: 450px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 1px solid #3c096c;
+}
+
+.modal-contenido h2 {
+    color: #FFF3B0;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.campo-form {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.campo-form label {
+    color: #ccc;
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+.campo-form input, .campo-form select, .campo-form textarea {
+    background-color: #1e1e24;
+    border: 1px solid #4a4e69;
+    color: white;
+    padding: 10px;
+    border-radius: 6px;
+    font-family: inherit;
+}
+
+.modal-botones {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn-cancelar {
+    background: none;
+    border: 1px solid #ccc;
+    color: #ccc;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-crear {
+    background-color: #3c096c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Container de la barra lateral para empujar el botón abajo */
+.sidebar-clasificaciones {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Manda el botón al fondo de la columna */
+}
+
+/* Botón Limpiar Todo */
+.zona-eliminar-todo {
+    margin-top: auto;
+    padding-top: 20px;
+}
+
+.btn-eliminar-todo {
+    background: none;
+    border: 1px dashed #e63946;
+    color: #e63946;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 13px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.btn-eliminar-todo:hover {
+    background-color: #e63946;
+    color: white;
+}
+
+/* ❌ Botón eliminar libro individual */
+.btn-eliminar-libro {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(230, 57, 70, 0.85);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    opacity: 0; /* Oculto por defecto */
+    transition: opacity 0.3s ease, transform 0.2s;
+}
+
+.btn-eliminar-libro:hover {
+    transform: scale(1.15);
+    background: #e63946;
+}
+
+/* Mostrar la papelera únicamente cuando se pasa el mouse por la tarjeta */
+.tarjeta-libro:hover .btn-eliminar-libro {
+    opacity: 1;
+}
+
+/* Estilos para la tarjeta permanente de añadir */
+.tarjeta-agregar-nueva {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 250px; /* Ajusta esto según el alto de tus otras portadas */
+}
+
+.tarjeta-agregar-nueva:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #ff4757; /* O el color principal de tu app */
+    transform: translateY(-5px);
+}
+
+.tarjeta-agregar-nueva .icono-mas {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.tarjeta-agregar-nueva p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+/* Ajuste para que el botón se acomode bien dentro de la capa flotante */
+.capa-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.btn-escribir-libro {
+    display: inline-block;
+    background-color: #bb86fc;
+    color: #000000;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 13px;
+    margin-top: 8px;
+    transition: background 0.2s;
+}
+
+.btn-escribir-libro:hover {
+    background-color: #9a66da;
+}

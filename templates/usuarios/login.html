@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graf - Iniciar Sesión</title>
+    <!-- Aquí vinculamos tu archivo CSS usando Django -->
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+</head>
+<body>
+
+    <div class="contenedor-login">
+        <h1>Bienvenido <span class="texto-verde">Escritor</span></h1>
+        
+        <!-- Añadimos method="POST" -->
+        <form id="formulario-login" method="POST">
+            {% csrf_token %} <!-- 🛡️ Llave de seguridad obligatoria en Django -->
+            
+            <div class="grupo-input">
+                <label for="usuario">Nombre de escritor:</label>
+                <!-- Añadimos name="usuario_nombre" -->
+                <input type="text" id="usuario" name="usuario_nombre" placeholder="Tu nombre o seudónimo" required>
+            </div>
+            
+            <div class="grupo-input">
+                <label for="password">Contraseña:</label>
+                <!-- Añadimos name="usuario_clave" -->
+                <input type="password" id="password" name="usuario_clave" placeholder="Tu contraseña secreta" required>
+            </div>
+            
+            <button type="submit">Ingresar al archivo</button>
+        </form>
+
+<div class="login-footer">
+    <p>¿No tienes cuenta? <a href="{% url 'registro' %}">Regístrate aquí</a></p>
+    <p><a href="{% url 'password_reset' %}">¿Olvidaste tu contraseña?</a></p>
+</div>
+
+    <!-- Aquí vinculamos tu archivo JavaScript usando Django -->
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

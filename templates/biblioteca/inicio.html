@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graf - Inicio</title>
+    <link rel="stylesheet" href="{% static 'css/inicio.css' %}">
+</head>
+<body>
+
+    <!-- 1. Barra de Navegación -->
+    <nav class="barra-navegacion">
+        <div class="logo">✒️ Graf</div>
+        <div class="enlaces">
+            <a href="#" class="activo">Inicio</a>
+            <a href="{% url 'biblioteca' %}">Biblioteca</a>
+            <a href="#">Explorar</a>
+            <a href="#">Comunidad</a>
+            <a href="{% url 'logout' %}" class="btn-logout">Cerrar Sesión</a>
+        </div>
+    </nav>
+
+   <!-- Bienvenida al usuario -->
+    <header class="bienvenida-usuario">
+        <h2>Bienvenido <span>{{ user.username }}</span>, Disfruta un sin fin de historias</h2>
+    </header>
+
+    <!-- 2. Contenedor Principal (Dos columnas) -->
+    <main class="contenedor-principal">
+        
+        <!-- Cuadro de la izquierda (Mayor parte del encuadre) -->
+        <section class="cuadro-informacion">
+            <!-- Espacio para la imagen (puedes meter una foto en static/imagenes/ later) -->
+            
+            <div class="imagen-presentacion">
+              <!-- Cambia 'presentacion.jpg' por el nombre real de tu foto -->
+                <img src="{% static 'imagenes/1868817.jpg' %}" alt="Imagen de cabecera" class="foto-banner">
+            </div>
+
+            
+            <div class="texto-info">
+                <h3>Sobre nuestro proyecto</h3>
+                <p>Bienvenido a tu nuevo espacio de creación y lectura. Esta plataforma está diseñada por y para escritores que buscan un rincón ordenado donde plasmar sus mundos fantásticos, novelas románticas o crónicas de misterio.</p>
+                <p>Aquí podrás gestionar tus manuscritos, explorar las mentes de otros creativos de la comunidad y recibir críticas constructivas para pulir tu pluma. El viaje literario comienza hoy.</p>
+            </div>
+        </section>
+
+        <!-- Cuadro de la derecha (Apoya el proyecto) -->
+        <aside class="cuadro-apoyo">
+            <!-- Modifica el href="#" por el link que tú quieras (ej. tu Paypal, Ko-fi o Patreon) -->
+            <a href="https://tu-link-de-redireccion-aqui.com" target="_blank" class="enlace-apoyo">
+                <h3>Apoya el proyecto ☕</h3>
+                <p>Si te gusta nuestra idea y quieres ayudar a mantener los servidores encendidos, ¡puedes invitarnos a un café!</p>
+                <span class="boton-simulado">Saber más</span>
+            </a>
+        </aside>
+
+    </main>
+
+    <!-- 3. El Footer -->
+    <footer class="pie-pagina">
+        <p>&copy; 2026 Complejo para Escritores. Todos los derechos reservados. Hecho con pasión.</p>
+    </footer>
+
+</body>
+</html>
